@@ -1,4 +1,4 @@
-public/
+#public/
 .idea/
 
 # Ignore DS_Store files:
