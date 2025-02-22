@@ -1,17 +1,17 @@
 ---
 # Display name
-title: 吳健雄
+title: Blake Cole
 
 # Name pronunciation (optional)
-name_pronunciation: Chien Shiung Wu
+name_pronunciation: ''
 
 # Full name (for SEO)
-first_name: Shiung Wu
-last_name: Chien
+first_name: Blake
+last_name: Cole
 
 # Status emoji
 status:
-  icon: ☕️
+  icon: ''
 
 # Is this the primary user of the site?
 superuser: true
@@ -20,92 +20,125 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Chief Scientist
+role: Mechanical Engineer
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
-  - name: OpenAI
-    url: https://openai.com/
+  - name: SeaWing, LLC
+    url: https://www.seawing.io/
+
+bio: Problem Solver. Ocean Creature.
 
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
-    url: 'mailto:your-email@example.com'
+    url: 'mailto:blake@seawing.io'
     label: E-mail Me
   - icon: brands/x
-    url: https://twitter.com/GetResearchDev
-  - icon: brands/instagram
-    url: https://www.instagram.com/
+    url: https://x.com/blerkk
+#  - icon: brands/instagram
+#    url: https://www.instagram.com/
   - icon: brands/github
-    url: https://github.com/gcushen
+    url: https://github.com/blakecole
   - icon: brands/linkedin
-    url: https://www.linkedin.com/
+    url: https://www.linkedin.com/in/coleblake/
   - icon: academicons/google-scholar
-    url: https://scholar.google.com/
+    url: https://scholar.google.com/citations?user=waW_BnYAAAAJ
   - icon: academicons/orcid
-    url: https://orcid.org/
+    url: https://orcid.org/0000-0002-4957-6903
 
 interests:
   - Artificial Intelligence
-  - Computational Linguistics
-  - Information Retrieval
+  - Autonomy & Control
+  - Fluid Dynamics
 
 education:
-  - area: PhD Artificial Intelligence
-    institution: Stanford University
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+  - area: PhD Mechanical Engineering
+    institution: Massachusetts Institute of Technology
+    date_start: 2017-09-06
+    date_end: 2024-05-30
     summary: |
-      Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
+      GPA: 4.8/5
+      
+      Doctoral thesis describing how to properly design (and test) a rigid wingsail for autonomous sailing. Supervised by [Dr. Peter Traykovski](https://www2.whoi.edu/staff/ptraykovski/) and [Prof. Henrik Schmidt](https://meche.mit.edu/people/faculty/HENRIK@MIT.EDU). Contributions were published in both Springer and IEEE journals.
+
     button:
       text: 'Read Thesis'
-      url: 'https://example.com'
-  - area: MEng Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      GPA: 3.8/4.0
-
-      Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - area: BSc Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      GPA: 3.4/4.0
+      url: 'https://dspace.mit.edu/handle/1721.1/156304'
       
-      Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-work:
-  - position: Director of Cloud Infrastructure
-    company_name: GenCoin
-    company_url: ''
-    company_logo: ''
-    date_start: 2021-01-01
-    date_end: ''
-    summary: |2-
-      Responsibilities include:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - position: Backend Software Engineer
-    company_name: X
-    company_url: ''
-    company_logo: ''
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+  - area: MS Civil & Environmental Engineering
+    institution: Stanford University
+    date_start: 2014-09-22
+    date_end: 2015-06-14
     summary: |
-      Responsibilities include:
-      - Migrated infrastructure to a new data center
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      GPA: 3.74/4.0
+      - Hydrodynamics
+      - Numerical Methods
+      - Product Design
+      
+  - area: BSc Environmental Engineering
+    institution: University of California, San Diego
+    date_start: 2008-09-25
+    date_end: 2013-06-15
+    summary: |
+      GPA: 3.45/4.0
+      - Major: Environmental Engineering
+      - Minor: Political Science
+      
+work:
+  - position: Founder, CEO
+    company_name: SeaWing, LLC
+    company_url: 'https://www.seawing.io'
+    company_logo: ''
+    date_start: 2023-10-01
+    date_end: ''
+    summary: |
+      - Building state-of-the-art uncrewed surface vessels for academic research, defense (ISR), and commercial offshore applications.
+      - Consulting for marine vehicle autonomy and design optimization.
+
+  - position: Visiting Oceanography Faculty
+    company_name: Sea Education Association
+    company_url: 'https://sea.edu/'
+    company_logo: ''
+    date_start: 2024-06-18
+    date_end: 2024-08-12
+    summary: |
+      - Developed lecture materials and planned field trips for a college-level introductory short course in oceanography.
+      - 120 hours of teaching experience as a lead instructor.
+
+  - position: Marine Engineer
+    company_name: Virgin Hyperloop One
+    company_url: 'https://en.wikipedia.org/wiki/Hyperloop_One'
+    company_logo: ''
+    date_start: 2015-09-21
+    date_end: 2018-02-02
+    summary: |
+      - Led the marine research program.
+      - Developed regional ocean models driven by wind, wave, and tidal data, and used Weibull distributions to estimate extreme event recurrence intervals.
+      - Performed structural finite element analysis for various subassemblies.
+      - Formulated requirements and conducted the initial design of a tubular thermal expansion joint.
+      - Developed and field-validated a nonlinear heat transfer model for a prototype hyperloop system located outside Las Vegas, NV.
+
+  - position: Independent Contractor
+    company_name: United States Geological Survey (Pacific Coastal and Marine Science Center)
+    company_url: 'https://www.usgs.gov/pacific-coastal-and-marine-science-center'
+    company_logo: ''
+    date_start: 2015-06-07
+    date_end: 2016-02-29
+    summary: |
+      - Assisted in the development of a sediment transport model integrating longshore and cross-shore processes for predicting long-term shoreline response to climate change.
+
+  - position: Environmental Engineer
+    company_name: Naval Information Warfare Center - Pacific
+    company_url: 'https://www.niwcpacific.navy.mil/'
+    company_logo: ''
+    date_start: 2012-06-25
+    date_end: 2013-09-22
+    summary: |
+      - Assisted in the development of handheld contaminant sensor for Navy divers.
+      - Performed CFD simulations of various sediment transport processes. 
+      - Participated in the deployment and retrieval of a benthic microbial fuel cell.
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
@@ -131,7 +164,7 @@ skills:
       - name: Hiking
         description: ''
         percent: 60
-        icon: person-simple-walk
+        icon: surf
       - name: Cats
         description: ''
         percent: 100
@@ -142,35 +175,18 @@ skills:
         icon: camera
 
 languages:
-  - name: English
-    percent: 100
-  - name: Chinese
-    percent: 75
-  - name: Portuguese
-    percent: 25
+  - name: C++
+    percent:
+  - name: MATLAB
+    percent:
+  - name: Python
+    percent:
 
 # Awards.
 #   Add/remove as many awards below as you like.
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
-  - title: Neural Networks and Deep Learning
-    url: https://www.coursera.org/learn/neural-networks-deep-learning
-    date: '2023-11-25'
-    awarder: Coursera
-    icon: coursera
-    summary: |
-      I studied the foundational concept of neural networks and deep learning. By the end, I was familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications.
-  - title: Blockchain Fundamentals
-    url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
-    date: '2023-07-01'
-    awarder: edX
-    icon: edx
-    summary: |
-      Learned:
-      - Synthesize your own blockchain solutions
-      - Gain an in-depth understanding of the specific mechanics of Bitcoin
-      - Understand Bitcoin’s real-life applications and learn how to attack and destroy Bitcoin, Ethereum, smart contracts and Dapps, and alternatives to Bitcoin’s Proof-of-Work consensus algorithm
   - title: 'Object-Oriented Programming in R'
     url: https://www.datacamp.com/courses/object-oriented-programming-with-s3-and-r6-in-r
     certificate_url: https://www.datacamp.com
@@ -182,5 +198,4 @@ awards:
 ---
 
 ## About Me
-
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Blake Cole was born in Redondo Beach, California, and received his Ph.D. in Mechanical Engineering from the Massachusetts Institute of Technology in 2024. While at MIT, Blake developed a design optimization methodology for rigid wingsails, and validated his approach using an in-situ data aquisition system. He also mademeaningful contributions to the fields of marine vehicle autonomy and state estimation. Blake remains interested in designing novel floating and flying machines.
