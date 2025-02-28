@@ -1,0 +1,17 @@
+/* assets/css/themes/navy.css */
+
+:root {
+  /* Primary accent color */
+  --color-primary: rgb(0, 136, 204);
+
+  /* Menu colors */
+  --color-menu-bg: rgb(33, 37, 41);
+  --color-menu-text: rgb(0, 136, 204);
+  --color-menu-text-active: rgba(255, 255, 255, 1);
+  --color-menu-title: rgb(153, 153, 153);
+
+  /* Home section background */
+  --color-home-section: rgb(29, 33, 39);
+
+  /* Add any other color variables that the theme uses */
+}

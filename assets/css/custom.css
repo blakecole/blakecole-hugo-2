@@ -1,14 +1,65 @@
-/* Container for the Formspree form */
-/* Updated Custom CSS for Dark Mode with Emerald Accents */
+/* Change background color to dark navy gray-blue */
+.dark body {
+  background-color: #2C2F3C !important;
+}
+.body {
+  background-color: #fff !important;
+}
 
+
+/* Change color to dark midnight blue (dark) */
+.dark header,
+.dark .page-header {
+  background-color: #00131A !important;
+}
+
+.dark #contact {
+  background-color: #00131A !important;
+}
+#contact {
+  background-color: #D3D3D3 !important;
+}
+
+.dark #publications {
+  background-color: #00131A !important;
+}
+#publications {
+  background-color: #D3D3D3 !important;
+}
+
+.dark #section-github-blakecole-featurette {
+  background-color: #00131A !important;
+}
+#section-github-blakecole-featurette {
+  background-color: #D3D3D3 !important;
+}
+
+/* Enable cool smooth scrolling effect  */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Target just the first section by its ID */
+/* Remove vertical padding */
+#section-resume-biography-3 {
+    padding-top: 0 !important;
+}
+#section-github-blakecole-featurette {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+/* Container for the Formspree form */
+/* Dark Navy/Gray "Mr. Robot" Style Contact Widget with Darker Button */
 /* Form container */
 .fs-form {
-  max-width: 600px;
+  max-width: 640px !important; /* Adjust as needed (e.g., 800px) */
   margin: 2rem auto;
-  background: #2d2d2d; /* Dark gray background */
+  background: #1B2735; /* Dark navy background */
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   font-family: 'Helvetica Neue', Arial, sans-serif;
   color: #e0e0e0;
 }
@@ -20,8 +71,8 @@
 
 /* Label styling */
 .fs-label {
-  display: block;
-  font-size: 1rem;
+  display: inline-flex;
+  /* font-size: 1rem; */
   margin-bottom: 0.5rem;
   color: #ccc;
 }
@@ -31,35 +82,36 @@
 .fs-textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #444;
+  border: 1px solid #394659; /* Dark gray/blue border */
   border-radius: 4px;
   font-size: 1rem;
-  background: #3b3b3b;
+  background: #2F3B4D; /* Slightly lighter dark background */
   color: #e0e0e0;
   transition: border-color 0.3s ease;
 }
 
-.fs-input:focus,
-.fs-textarea:focus {
-  border-color: #10B981;  /* Emerald accent */
-  outline: none;
+.dark .fs-input:focus,
+.dark .fs-textarea:focus {
+  border-color: #00b3e6; /* Teal accent on focus */
+  /* outline: none; */
 }
 
-/* Description text under fields */
-.fs-description {
+/* Description text under fields
+.dark .fs-description {
   font-size: 0.875rem;
   color: #aaa;
   margin-top: 0.5rem;
 }
+*/
 
 /* Button group alignment */
 .fs-button-group {
   text-align: right;
 }
 
-/* Submit button styling */
+/* Submit button styling - darker navy */
 .fs-button {
-  background: #10B981;
+  background: #283B5B;  /* Dark navy button */
   color: #fff;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -70,5 +122,6 @@
 }
 
 .fs-button:hover {
-  background: #0E9F73;
+  background: #1F2E48;  /* Even darker on hover */
 }
+

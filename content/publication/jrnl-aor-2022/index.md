@@ -6,8 +6,8 @@ authors:
 - Gabriel Schamberg
 
 author_notes:
-- "Equal contribution"
-- "Equal contribution"
+- "[Corresponding author] Conceptualization, Methodology, Validation, Writing."
+- "Analysis, Supervision, Proofreading"
 
 date: "2022-07-01T00:00:00Z"
 doi: ""

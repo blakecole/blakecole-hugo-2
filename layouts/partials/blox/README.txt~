@@ -1,0 +1,24 @@
+Blake Cole
+25-FEB-2025
+
+This file tracks changes made to the files residing in the directory:
+/layouts/partials/blox/.
+
+These files were copied and pasted from the corresponding directory in _vendor/.
+
+These files override the corresponding files that reside in _vendor/.
+
+I am tracking changes for posterity, in case things get altered or overritten.
+
+file: resume-biography-3.html
+date: 2025-02-25
+goal: Increase width of "Education" block on homepage.
+edit: [123]
+<div class="grid grid-cols-1 md:grid-cols--2 gap-4 justify-between mt-6 dark:text-gray-300">
+changed to:
+<div class="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-4 justify-between mt-6 dark:text-gray-300">
+result:
+The box did increase in width; however, squeezed by its parent container, it was moved into a single column beneath the "Interests" block.
+
+
+

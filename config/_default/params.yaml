@@ -6,7 +6,7 @@
 # Appearance
 appearance:
   mode: dark
-  color: emerald
+  color: blue
 
 # SEO
 marketing:
@@ -37,8 +37,8 @@ header:
     logo:
       # Logo text
       text: "Blake Cole"
-      # Logo filename in `assets/media/` folder
-      filename: "bluesea-512.png"
+      # Logo filename in `assets/media/` folder (uncomment to include logo)
+      # filename: icons/bluesea-512.png
 
 # Site footer
 footer:
@@ -58,8 +58,8 @@ locale:
 # Site features
 features:
   math:
-    enable: false
+    enable: true
   privacy_pack:
     enable: false
   css:
-    - "css/custom.css"
+    css/custom.css

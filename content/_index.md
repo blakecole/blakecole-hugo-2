@@ -24,28 +24,36 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: stacked-peaks.svg
+          filename: stacked-peaks-mr-robot.svg
           filters:
-            brightness: 1.0
+            brightness: 0.8
           size: cover
           position: center
           parallax: false
+
+  - block: 'github.blakecole.featurette'
+    content:
+      title: "Programming Languages"
+      subtitle: "A showcase of my favorites"
+      feature:
+        - name: "C/C++"
+          description: "The pride of geeks everywhere."
+          icon: "devicon/c"
+        - name: "MATLAB"
+          description: "Good but expensive."
+          icon: "devicon/matlab"
+        - name: "Python"
+          description: "Clunky but free."
+          icon: "devicon/python"
 
 #  - block: markdown
 #    content:
 #      title: '📚 My Research'
 #      subtitle: ''
 #      text: |
-#        I'm a person, going about life, doing things.
+#        A person, going about life, doing things.
 #    design:
 #      columns: 1
-
-  - block: resume-skills
-    content:
-      title: Technical Skills
-      username: admin
-    design:
-      show_skill_percentage: false
       
   - block: resume-experience
     id: experience
@@ -56,7 +64,7 @@ sections:
       date_format: 'January 2006'
       # Education or Experience section first?
       is_education_first: true
-      
+
   - block: collection
     id: publications
     content:
@@ -67,8 +75,58 @@ sections:
         featured_only: true
     design:
       view: article-grid
+      columns: 2 
+
+  - block: collection
+    id: post
+    content:
+      title: Blog
+      filters:
+        folders:
+          - post
+    design:
+      view: article-grid
       columns: 2
-      
+      spacing:
+        padding: ['3rem', 0, '6rem', 0]
+        
+#  - block: resume-skills
+#    content:
+#      title: Skills
+#      username: admin
+#    design:
+#      show_skill_percentage: false
+
+  - block: markdown
+    id: contact
+    content:
+      title: "Contact"
+      subtitle: "Get in touch!"
+      text: |
+        <form
+          action="https://formspree.io/f/xwpvzqga"
+          class="fs-form"
+          target="_top"
+          method="POST">
+          
+          <div class="fs-field">
+            <label class="fs-label" for="name">Your Name</label>
+            <input class="fs-input" id="name" name="name" required />
+          </div>
+          <div class="fs-field">
+            <label class="fs-label" for="email">Email</label>
+            <input class="fs-input" id="email" name="email" required />
+          </div>
+          <div class="fs-field">
+            <label class="fs-label" for="message">Message</label>
+            <textarea class="fs-textarea" id="message" name="message" required></textarea>
+          </div>
+          <div class="fs-button-group">
+            <button class="fs-button" type="submit">Submit</button>
+          </div>
+        </form>
+---
+
 #  - block: collection
 #    content:
 #      title: Publications
@@ -120,36 +178,6 @@ sections:
 #      # Reduce spacing
 #      spacing:
 #        padding: [0, 0, 0, 0]
-
-  - block: markdown
-    id: contact
-    content:
-      title: "Contact"
-      subtitle: "Get in touch!"
-      text: |
-        <form
-          action="https://formspree.io/f/xwpvzqga"
-          class="fs-form"
-          target="_top"
-          method="POST">
-          
-          <div class="fs-field">
-            <label class="fs-label" for="name">Your Name</label>
-            <input class="fs-input" id="name" name="name" required />
-          </div>
-          <div class="fs-field">
-            <label class="fs-label" for="email">Email</label>
-            <input class="fs-input" id="email" name="email" required />
-          </div>
-          <div class="fs-field">
-            <label class="fs-label" for="message">Message</label>
-            <textarea class="fs-textarea" id="message" name="message" required></textarea>
-          </div>
-          <div class="fs-button-group">
-            <button class="fs-button" type="submit">Submit</button>
-          </div>
-        </form>
----
 
 #  - block: cta-card
 #    demo: false # Only display this section in the Hugo Blox Builder demo site

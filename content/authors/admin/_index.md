@@ -37,8 +37,6 @@ profiles:
     label: E-mail Me
   - icon: brands/x
     url: https://x.com/blerkk
-#  - icon: brands/instagram
-#    url: https://www.instagram.com/
   - icon: brands/github
     url: https://github.com/blakecole
   - icon: brands/linkedin
@@ -51,7 +49,7 @@ profiles:
 interests:
   - Artificial Intelligence
   - Autonomy & Control
-  - Fluid Dynamics
+  - Computational Fluid Dynamics
 
 education:
   - area: PhD Mechanical Engineering
@@ -62,7 +60,6 @@ education:
       GPA: 4.8/5
       
       Doctoral thesis describing how to properly design (and test) a rigid wingsail for autonomous sailing. Supervised by [Dr. Peter Traykovski](https://www2.whoi.edu/staff/ptraykovski/) and [Prof. Henrik Schmidt](https://meche.mit.edu/people/faculty/HENRIK@MIT.EDU). Contributions were published in both Springer and IEEE journals.
-
     button:
       text: 'Read Thesis'
       url: 'https://dspace.mit.edu/handle/1721.1/156304'
@@ -95,7 +92,6 @@ work:
     date_end: ''
     summary: |
       - Building state-of-the-art uncrewed surface vessels for academic research, defense (ISR), and commercial offshore applications.
-      - Consulting for marine vehicle autonomy and design optimization.
 
   - position: Visiting Oceanography Faculty
     company_name: Sea Education Association
@@ -105,7 +101,7 @@ work:
     date_end: 2024-08-12
     summary: |
       - Developed lecture materials and planned field trips for a college-level introductory short course in oceanography.
-      - 120 hours of teaching experience as a lead instructor.
+      - 120 hours of teaching experience as the lead instructor.
 
   - position: Marine Engineer
     company_name: Virgin Hyperloop One
@@ -118,7 +114,7 @@ work:
       - Developed regional ocean models driven by wind, wave, and tidal data, and used Weibull distributions to estimate extreme event recurrence intervals.
       - Performed structural finite element analysis for various subassemblies.
       - Formulated requirements and conducted the initial design of a tubular thermal expansion joint.
-      - Developed and field-validated a nonlinear heat transfer model for a prototype hyperloop system located outside Las Vegas, NV.
+      - Developed and field-validated a non-linear heat transfer model for a prototype hyperloop system located outside Las Vegas, NV.
 
   - position: Independent Contractor
     company_name: United States Geological Survey (Pacific Coastal and Marine Science Center)
@@ -127,7 +123,7 @@ work:
     date_start: 2015-06-07
     date_end: 2016-02-29
     summary: |
-      - Assisted in the development of a sediment transport model integrating longshore and cross-shore processes for predicting long-term shoreline response to climate change.
+      - Assisted in the development of a sediment transport model that integrates longshore and cross-shore processes to predict long-term shoreline response to climate change.
 
   - position: Environmental Engineer
     company_name: Naval Information Warfare Center - Pacific
@@ -142,45 +138,43 @@ work:
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
-skills:
-  - name: Technical Skills
-    items:
-      - name: Python
-        description: ''
-        percent: 80
-        icon: code-bracket
-      - name: Data Science
-        description: ''
-        percent: 100
-        icon: chart-bar
-      - name: SQL
-        description: ''
-        percent: 40
-        icon: circle-stack
-  - name: Hobbies
-    color: '#eeac02'
-    color_border: '#f0bf23'
-    items:
-      - name: Hiking
-        description: ''
-        percent: 60
-        icon: surf
-      - name: Cats
-        description: ''
-        percent: 100
-        icon: cat
-      - name: Photography
-        description: ''
-        percent: 80
-        icon: camera
+#skills:
+#  - name: Software
+#    items:
+#      - name: Solidworks
+#        description: ''
+#        percent: 100
+#        icon: icons/solidworks-16
+#      - name: STAR-CCM+
+#        description: ''
+#        percent: 100
+#        icon: icons/star-ccm
+#      - name: MOOS-IvP
+#        description: ''
+#        percent: 100
+#        icon: icons/moose        
+#  - name: MCUs
+#    items:
+#      - name: ESP32
+#        description: ''
+#        percent: 100
+#        icon: 
+#      - name: Arduino
+#        description: ''
+#        percent: 100
+#        icon:
+#      - name: myRIO
+#        description: ''
+#        percent: 100
+#        icon: 
 
-languages:
-  - name: C++
-    percent:
-  - name: MATLAB
-    percent:
-  - name: Python
-    percent:
+#languages:
+#  - name: C++
+#    percent:
+#  - name: MATLAB
+#    percent:
+#  - name: Python
+#    percent:
 
 # Awards.
 #   Add/remove as many awards below as you like.
@@ -197,5 +191,5 @@ awards:
       Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
 ---
 
-## About Me
-Blake Cole was born in Redondo Beach, California, and received his Ph.D. in Mechanical Engineering from the Massachusetts Institute of Technology in 2024. While at MIT, Blake developed a design optimization methodology for rigid wingsails, and validated his approach using an in-situ data aquisition system. He also mademeaningful contributions to the fields of marine vehicle autonomy and state estimation. Blake remains interested in designing novel floating and flying machines.
+## About
+Blake Cole is a general-purpose engineer with deep expertise in marine robotics, aerodynamics, and data science.  He earned his PhD in Mechanical Engineering from the Massachusetts Institute of Technology in 2024.  As a doctoral student, Blake developed a physics-based optimization methodology for rigid wingsails, and later validated his approach using a bespoke data acquisition system.  He also made meaningful contributions to the fields of vehicle autonomy and state estimation.  Blake remains interested in designing, building, and testing intelligent flying machines.
