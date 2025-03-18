@@ -3,11 +3,11 @@
 
 title: "Hello World + Bio"
 subtitle: "An amalgam of words, pictures, etc."
-summary: ""
+summary: "Unapologetic navel-gazing."
 authors: admin
 tags: []
 categories: []
-date: 2022-08-08T08:18:13-04:00
+date: 2022-08-07T08:18:13-04:00
 lastmod: 2022-08-08T08:18:13-04:00
 featured: false
 draft: false
