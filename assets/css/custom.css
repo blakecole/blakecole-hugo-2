@@ -125,3 +125,22 @@ html {
   background: #1F2E48;  /* Even darker on hover */
 }
 
+/* Image gallery styling */
+.gallery {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin: 0 auto;
+}
+
+.gallery a {
+  display: block;
+  margin: 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+}
