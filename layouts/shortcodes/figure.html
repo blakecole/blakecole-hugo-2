@@ -6,13 +6,13 @@
 {{ $lightbox := eq (.Get "lightbox" | default "true") "true" }}
 {{ $group := .Get "lightbox-group" | default "" }}
 
-<figure style="text-align: center;"{{ with .Get "class" }} class="{{.}}"{{ end }}>
+<figure style="text-align: center; margin-top: 60px; margin-bottom: 60px;"{{ with .Get "class" }} class="{{.}}"{{ end }}>
 {{ if $lightbox }}
-  <a data-fancybox="{{$group}}" href="{{$image_src}}" style="display:inline-block;" {{ with .Get "caption"}}data-caption="{{ .|markdownify|emojify }}"{{ end }}>
+  <a data-fancybox="{{$group}}" href="{{$image_src}}" style="display:inline-block; margin:0; padding:0; line-height:0;" {{ with .Get "caption"}}data-caption="{{ .|markdownify|emojify }}"{{ end }}>
 {{ else if .Get "link"}}
-  <a href="{{ .Get "link" }}"{{ with .Get "target" }} style="display:inline-block;" target="{{.}}"{{ end }}{{ with .Get "rel" }} rel="{{.}}"{{ end }}>
+  <a href="{{ .Get "link" }}"{{ with .Get "target" }} style="display:inline-block; margin:0; padding:0; line-height:0;" target="{{.}}"{{ end }}{{ with .Get "rel" }} rel="{{.}}"{{ end }}>
 {{ end }}
-<img src="{{$image_src}}" {{ if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt"}}{{.}}{{else}}{{ .Get "caption" }}{{ end }}" {{ end }}{{ with .Get "width" }}width="{{.}}" {{ end }}{{ with .Get "height" }}height="{{.}}" {{ end }}>
+<img src="{{$image_src}}" style="display:block; margin:0; padding:0;" {{ if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt"}}{{.}}{{else}}{{ .Get "caption" }}{{ end }}" {{ end }}{{ with .Get "width" }}width="{{.}}" {{ end }}{{ with .Get "height" }}height="{{.}}" {{ end }}>
 {{ if or $lightbox (.Get "link") }}</a>{{ end }}
 {{ if or (or (.Get "title") (.Get "caption")) (.Get "attr")}}
 {{ $figure := split (i18n "figure" | default "Figure %d:") "%d" }}
