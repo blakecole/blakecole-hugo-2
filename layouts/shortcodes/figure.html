@@ -6,7 +6,7 @@
 {{ $lightbox := eq (.Get "lightbox" | default "true") "true" }}
 {{ $group := .Get "lightbox-group" | default "" }}
 
-<figure style="text-align: center; margin-top: 60px; margin-bottom: 60px;"{{ with .Get "class" }} class="{{.}}"{{ end }}>
+<figure style="text-align: center; margin-top: 50px; margin-bottom: 50px;"{{ with .Get "class" }} class="{{.}}"{{ end }}>
 {{ if $lightbox }}
   <a data-fancybox="{{$group}}" href="{{$image_src}}" style="display:inline-block; margin:0; padding:0; line-height:0;" {{ with .Get "caption"}}data-caption="{{ .|markdownify|emojify }}"{{ end }}>
 {{ else if .Get "link"}}
