@@ -1,7 +1,7 @@
 ---
-title: "Leveraging Reversible Jump Markov Chain Monte Carlo (RJ-MCMC) to Plan a (Better) Swim to Martha's Vineyard"
+title: "Open Water Swim Route Optimization Using Reversible Jump Markov Chain Monte Carlo (RJ-MCMC)"
 subtitle: ""
-summary: "Swim route optimization using the Metropolis-Hastings algorithm."
+summary: "An application of the Metropolis-Hastings algorithm."
 authors: admin
 tags: []
 categories: []
@@ -52,7 +52,7 @@ Specifically, I looked for solutions that were:
 - **Practical.**  The swimmer must arrive near the intended destination.
 - **Efficient.**  The swimmer should not fight the current, if possible.
 
-My simple guess-and-check approach worked well enough -- the swim was a success, and we arrived safely on shore near our intended destination, a little less than two hours after we departed.  However, some inquisitive minds soon began to wonder: *"Could it have been done better?"*
+My simple guess-and-check approach worked well enough -- the swim was a success, and we arrived safely on shore near our intended destination, a little less than two hours after we departed.  However, inquisitive minds soon began to wonder: *"Could it have been done better?"*
 
 {{< figure src="mv_swim_finish.jpg" id="mv_swim_finish" caption="Swimmers arriving on the shore of Martha's Vineyard, near Lake Tashmoo." numbered=true >}}
 
@@ -66,7 +66,7 @@ This is classic Casey Handmer.  For those of you who do not know him, that sucks
 
 {{< figure src="casey_handmer.jpg" id="handmer" caption="Casey Handmer, in the desert somewhere, presumably before he had children." numbered=true >}}
 
-The rate at which Casey solves problems is astounding.  This ability is rooted in an inclination to find first-order solutions quickly, and then decide whether higher fidelity approaches are warranted.  All good engineers seem to operate this way.  Not me.  I frequently succumb to the siren song of complexity, and spend hours deliberating which state-of-the-art technique I'm going to use to solve a problem.  This an ill-advised strategy: you could spend half a lifetime figuring out the best approach to a problem, and never get around to actually solving it.  You can't really know the *best* approach to a problem unless you have already solved it a few times (or talked to someone who has), so you might as well start with something simple -- dare I say, something *random* (hah).  Such was Casey's reasoning when he decided to utilize a relatively simple stochastic methodology to determine the best possible swim route from Woods Hole to Martha's Vineyard.
+The rate at which Casey solves problems is astounding.  This ability is rooted in an inclination to find first-order solutions quickly, and then decide whether higher fidelity approaches are warranted.  All good engineers seem to operate this way.  Not me.  I frequently succumb to the siren song of complexity, and spend hours deliberating which state-of-the-art technique I'm going to use to solve a problem.  This an ill-advised strategy: you could spend half a lifetime figuring out the best approach to a problem, and never get around to actually solving it.  You can't really know the *best* approach to a problem unless you have already solved it a few times (or talked to someone who has), so you might as well start with something simple -- dare I say, something *random*.  Such was Casey's reasoning when he decided to utilize a relatively simple stochastic methodology to determine the best possible swim route from Woods Hole to Martha's Vineyard.
 
 ## Markov Chain Monte Carlo
 There is power in randomness -- this is the fundamental premise of so-called *Monte Carlo* methods.  How can this be?  Randomness is inherently chaotic, and chaos is bad, right?  Isn't the foremost goal of science and engineering to distill order from chaos?
@@ -81,7 +81,7 @@ Monte Carlo methods trace their origins to the 1940s, when they were developed a
 
 A major advance came in the 1950s with the introduction of the Metropolis algorithm by Nicholas Metropolis and his colleagues Marshall Rosenbluth, Arianna Rosenbluth, Augusta Teller, and Edward Teller at Los Alamos National Laboratory.  This method combined Monte Carlo techniques with the mathematics of Markov Chains -- theoretical frameworks that describe sequences of possible events in which the probability of each event depends only on the state attained in the previous event, not the full history.  This *memoryless* property of Markov Chains makes them especially useful for exploring complex parameter spaces in a controlled (yet random) fashion.  In the Metropolis algorithm, a Markov Chain is constructed in such a way that, over time, it produces samples from a desired probability distribution -- or, equivalently, yields a set of parameters that minimizes a cost function (more on this equivalency in the [Algorithm]({{< ref "2-mcmc-mv-swim/#algorithm" >}}) section).
 
-Why would anyone want to do this?  Well, in short, there quite a few ways in which nuclear fusion does not happen, and Nicholas Metropolis and his colleagues wanted very badly for it to happen.  I would say more, but that's literally all I know -- my apologies in advance to Iran, South Korea, and Saudi Arabia.
+Why would anyone want to do this?  Well, in short, there quite a few ways in which nuclear fission does not happen, and Nicholas Metropolis and his colleagues wanted very badly for it to happen.  I would say more, but that's literally all I know, and even if I did know more, I probably wouldn't say more -- apologies in advance to Iran, South Korea, and Saudi Arabia.
 
 {{< figure src="markov_chain.png" id="markov_chain" width="200" caption="A diagram representing a two-state Markov process. The numbers are the probability of changing from one state to another state [source: [Wikipedia Commons](https://en.wikipedia.org/wiki/Markov_chain)]." numbered=true >}}
 
@@ -99,7 +99,7 @@ What?
 
 How does that relate to optimization?
 
-I wondered the same thing, at first -- do not dismay.
+I wondered the same thing at first -- do not dismay.
 
 The Metropolis–Hastings algorithm was originally developed to approximate probability distributions by generating a sequence of samples such that, after many iterations, the frequency of samples at any point, $x$, approximates the probability density, $P(x)$.
 
@@ -110,7 +110,7 @@ P(x) \propto e^{\beta C(x)},
 $$
 where $\beta$ is a positive (*inverse cooling*) parameter controlling the sharpness of the distribution.  If you run the Metropolis–Hastings algorithm with this distribution, the generated "samples" -- which represent sets of parameters, $x$, in this instance -- will preferentially come from low-cost regions of the parameter space, because these samples have a higher probability of being selected.
 
-If none of *that* made sense to you, I am sorry.  But, I have great news: the Metropolis–Hastings algorithm is shockingly easy to implement, even if you do not fully understand the underlying theory.  This means you (yes *you*!) can optimize all sorts of cool things in your life.
+If none of *that* made sense to you, that's okay -- I have great news: the Metropolis–Hastings algorithm is shockingly easy to implement, even if you do not fully understand the underlying theory.  This means you (yes, *you*!) can optimize all sorts of cool things in your life.
 
 These are the key steps:
 
@@ -141,7 +141,7 @@ flowchart TD
 
 Why periodically accept worse (higher cost) solutions?
 
-Imagine you are hiking in the mountains on a foggy day, searching for the highest peak.  If you simply climb upwards at every step, you might find yourself atop a small hill and assume you've reached the highest point (these little hilltops are called a *local maxima* or *local extrema* in nerd speak... we despise them).  In order to locate the highest peak -- the *global maximum* (which we love) -- you might need to occasionally descend to lower elevations, even if it seems counterproductive in the moment.
+Imagine you are hiking in the mountains on a foggy day, searching for the highest peak.  If you simply climb upwards at every step, you might find yourself atop a small hill and assume you've reached the highest point (these little hilltops are called a *local maxima* or *local extrema* in nerd speak).  In order to locate the highest peak -- the *global maximum* -- you might need to occasionally descend to lower elevations, even if it seems counterproductive in the moment.
 
 {{< figure src="hiker.png" id="hiker" caption="Sometimes you have to go lower to get higher [source: DALL-E 16.20.12]." numbered=true >}}
 
@@ -245,7 +245,7 @@ Depart Nobska Beach between 2:00a and 11:00a on July 30th, 2022 and cross Vineya
 **None**.  We're prioritizing *speed*, and speed alone -- ferries, ruffled feathers, and private beaches be damned (*especially* the private beaches, those can go straight to hell).  Any heading sequence that delivers the swimmer to Martha's Vineyard is on the table.
 
 ### Assumptions
-1. We assume the swimmer is able to maintain a **constant pace** of $1$:$40$/$100yd$.  This is a reasonable pace for an average open water swimmer in good shape.
+1. We assume the swimmer is able to maintain a **constant pace** of 1:40/100yd.  This is a reasonable pace for an average open water swimmer in good shape.
 2. We assume the swimmer departs from a **fixed location** on Nobska Beach, MA, sometime between 2:00a and 11:00a on July 20th, 2022.
 
 ### Parameters
@@ -296,7 +296,7 @@ Depart Nobska Beach between 2:00a and 11:00a on July 30th, 2022 and cross Vineya
 
 6. Compute the acceptance probability: $\alpha_k = \exp{\left( \frac{\Delta_k}{T_k} \right)}$, where $\Delta_k$ is the cost difference between the candidate and previous solutions, and $T_k$ is the annealing temperature parameter.  We reduce $T_k$ gradually over time using a *linear cooling schedule* to discourage premature convergence.
 
-7. Keep the candidate solution if ***BOTH*** of the following conditions are met:
+7. Keep the candidate solution if ***BOTH*** the following conditions are met:
    1. ***EITHER*** the candidate cost is lower than the previous cost, $C_k < C_{k-1}$, ***OR*** the acceptance probability, $\alpha_k$, is greater than a random number drawn from a uniform distribution, $\mathcal{U}(0,1)$.
    2. The swim trajectory terminates inside the boundary of Martha's Vineyard.
 
@@ -389,7 +389,7 @@ In the following plots, the pre-optimization (i.e., *constant-heading*) solution
 Without further ado, here are the results you presumably came here for.
 {{< gallery album="mv-mcmc-solutions" >}}
 
-Assuming a constant swim pace of $1$:$40/100yd$, and no concerns about getting maimed by a ferry...
+Assuming a constant swim pace of 1:40/100yd, and no concerns about getting maimed by a ferry...
 
 ***On July 30th, 2022, it would have been possible to depart Nobska Beach between 7:30a and 8:00a, and cross Vineyard Sound in 1 hour, 32 minutes***. 
 
@@ -406,7 +406,7 @@ Probably a good time to reiterate my initial caveat: this would be an insanely h
 
 
 #### Convergence
-I wanted to display a few figures that highlight the robust convergence properties of this optimization routine.  In the following two figures, the grayscale lines represent the best solution after every 100 iterations, with a corresponding colorbar displaying the total swim time in seconds.  The optimized solution is shown in yellow, and the textbox in the upper righthand corner shows the optimized swim distance and time.
+I wanted to display a few figures that highlight the robust convergence properties of this optimization routine.  In the following two figures, the grayscale lines represent the in-progress solution every 100 iterations, with a corresponding colorbar displaying the total swim time in seconds.  The optimized solution is shown in yellow, and the textbox in the upper righthand corner shows the optimized swim distance and time.
 
 {{< figure src="mv_swim_convergence_h180_0630.png" id="robust_soln" caption="Illustration of solver robustness: convergence is achieved despite poorly chosen initial conditions." numbered=true >}}
 
@@ -414,7 +414,7 @@ I ran this optimization shortly after I applied an exponential cooling schedule 
 
 Uncalled for.  Pathological.
 
-Nevertheless, the optimization routine quickly honed in on the correct solution.  I was so proud that it didn't get mired in the morass of bullshit to which it was intentionally subjected -- I think I understand now [why those guys at Boston Dynamics are so mean to their robots](https://www.youtube.com/watch?v=zkv-_LqTeQA)!
+Nevertheless, the optimization routine quickly honed in on the correct solution.  I was so proud that it didn't get mired in the morass of bullshit to which it was intentionally subjected -- now I understand why the [Boston Dynamics engineers are so mean to their robots](https://www.youtube.com/watch?v=zkv-_LqTeQA).
 
 On to the next!
 
@@ -433,9 +433,9 @@ But, on the other hand... pretty cool, right?
 
 It is often said (by lunatics, mostly) that there are many ways to skin a cat; likewise, I am confident that there are other, perhaps better, ways to approach this problem.  But, then again, there are so many cats, and so little time.
 
-Feel free to [reach out](../../#contact) if you have any questions, comments, or want to collaborate on a cool project.  Thanks for reading.
+Feel free to [reach out](../../#contact) if you have any questions, comments, or want to collaborate on a cool project.
 
-Go forth and optimize!
+Thanks for reading.
 
 ---
 
