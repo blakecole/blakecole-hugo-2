@@ -1,7 +1,7 @@
 ---
 title: "Leveraging Reversible Jump Markov Chain Monte Carlo (RJ-MCMC) to Plan a (Better) Swim to Martha's Vineyard"
 subtitle: ""
-summary: "One of my more talented friends helped me determine the *best possible* swim route to Martha's Vineyard.  Bless you, Casey Handmer."
+summary: "Swim route optimization using the Metropolis-Hastings algorithm."
 authors: admin
 tags: []
 categories: []
@@ -27,12 +27,12 @@ projects: []
 ---
 
 ## Should You Read This?
-Life is short -- there are mountains to climb, oceans to explore, TikTok reels to enjoy and forget about microseconds later.
+Life is short -- there are mountains to climb, oceans to explore, TikTok reels to enjoy and forget about mere seconds later.
 
 Continue reading if:
-- You have contemplated swimming to Martha's Vineyard, and want to know how it can be done, and done well (in theory).*
+- You have contemplated swimming to Martha's Vineyard, and want to know how it can be done optimally (in theory).*
 - You want to learn about the history and implementation of *Markov Chain Monte Carlo* (MCMC) optimization methods.
-- You need to optimize a system defined by an *unknown number of parameters* (sometimes this is called *model selection*).  We will accomplish this task using a cool extension of MCMC called *Reversible Jump MCMC* (RJ-MCMC).
+- You need to optimize a system defined by an unknown number of parameters (sometimes this is called *model selection*).  We will accomplish this task using a cool extension of MCMC called *Reversible Jump MCMC* (RJ-MCMC).
 - You want to extend/improve my [RJ-MCMC repository on GitHub](https://github.com/blakecole/mv-mcmc).
 
 \*Please don't be an idiot.  Be safe.  Do your homework.  Don't get hit by a ferry. <br>&nbsp; Or, if you prefer legalese:
@@ -57,16 +57,16 @@ My simple guess-and-check approach worked well enough -- the swim was a success,
 {{< figure src="mv_swim_finish.jpg" id="mv_swim_finish" caption="Swimmers arriving on the shore of Martha's Vineyard, near Lake Tashmoo." numbered=true >}}
 
 ## Need for Speed
-In the days and weeks after I published the original [post](https://www.blakecole.com/post/1-adcirc-mv-swim/), I received a great deal of positive feedback on my work, and was admittedly somewhat pleased with myself.  I had used my brain to plan a logistically complex adventure which my body executed, and that felt very good.  I was still indulgently basking in self-satisfaction when I received a message from my good friend and colleague, [Casey Handmer](https://www.caseyhandmer.com/home), which said something along the lines of,
+In the days and weeks after I published the original [post](https://www.blakecole.com/post/1-adcirc-mv-swim/), I received a great deal of positive feedback on my work, and was admittedly somewhat pleased with myself.  I had used my brain to plan a logistically complex adventure which my body executed, and that felt very good.  I was still indulgently basking in self-satisfaction when I received a message from my good friend and colleague, [Casey Handmer](https://www.caseyhandmer.com/home), saying something along the lines of,
 >You should optimize the swim.
 
-I swallowed hard.  I knew he was right, but absolutely did not want to admit it.  Admitting it would mean more work for me, and probably not just a little more -- I suspected I would need to familiarize myself with some super fancy gradient-free, nonlinear, nonconvex optimization routine.  At the time, I was already five years into my PhD program, and could feel the institutional pressure rising: I needed to defend my thesis soon, or risk being kicked out of the program.  I bristled at Casey's nonchalance, which seemed to suggest that this problem -- which I didn't even know how to structure -- could be solved easily in an afternoon.  Suppressing my indignation, I informed Casey that I wasn't going to optimize the swim, and that I needed to focus on my doctoral research.  He replied quickly, and asked me to send him the tidal current simulation data *so that he could do it himself*.
+I knew he was right, but absolutely did not want to admit it.  Admitting it would mean more work for me, and probably not just a little more -- I suspected I would need to familiarize myself with some super fancy gradient-free, nonlinear, nonconvex optimization routine.  At the time, I was already five years into my PhD program, and could feel the institutional pressure rising: I needed to defend my thesis soon, or risk being kicked out of the program.  I bristled at Casey's nonchalance, which seemed to suggest that this problem -- which I didn't even know how to structure -- could be solved easily in an afternoon.  Suppressing my indignation, I informed Casey that I wasn't going to optimize the swim, and that I needed to focus on my doctoral research.  He replied quickly, and asked me to send him the tidal current simulation data so that he could do it himself.
 
 This is classic Casey Handmer.  For those of you who do not know him, that sucks -- he is certainly one of the most fascinating people I have ever met.  He seems to crave technical problems like most people crave sweets or other sensory indulgences.  A physicist named Stanislaw Ulam (more on him [later]({{< ref "2-mcmc-mv-swim/#history" >}})) once remarked, "the mathematicians know a great deal about very little, and the physicists [know] very little about a great deal."  Casey knows basically everything about everything.   At the age of 19, he traveled to Vietnam by himself, and hitchhiked through China and Russia before arriving in Italy; he speaks multiple languages, sings, and plays the trombone; when he isn't riding his unicycle, he likes to fly airplanes or climb mountains; he also has a PhD in theoretical physics from Caltech, and founded [Terraform Industries](https://www.terraformindustries.com/), a company which aims to mitigate climate change by [synthesizing natural gas from sunlight and air](https://terraformindustries.wordpress.com/2022/07/24/terraform-industries-whitepaper/).  He is a caring husband and father of three, and yet still somehow finds time to crank out wide-ranging technical [articles](https://caseyhandmer.wordpress.com/) on a weekly basis.  He is also Australian.  Go figure.
 
 {{< figure src="casey_handmer.jpg" id="handmer" caption="Casey Handmer, in the desert somewhere, presumably before he had children." numbered=true >}}
 
-The rate at which Casey solves problems is astounding.  This ability is rooted in an inclination to find first-order solutions quickly, and then decide whether higher fidelity approaches are warranted.  All good engineers seem to operate this way.  Not me.  I frequently succumb to the siren song of complexity, and spend hours deliberating which state-of-the-art technique I'm going to use to solve a problem.  This an ill-advised strategy: you could spend half a lifetime figuring out the best approach to a problem, and never get around to actually solving it.  Further, you can't really know the *best* approach to a problem unless you have already solved it a few times (or talked to someone who has), so you might as well start with something simple -- dare I say, something *random*.  Such was Casey's reasoning when he decided to utilize a relatively simple stochastic methodology to determine the best possible swim route from Woods Hole to Martha's Vineyard.
+The rate at which Casey solves problems is astounding.  This ability is rooted in an inclination to find first-order solutions quickly, and then decide whether higher fidelity approaches are warranted.  All good engineers seem to operate this way.  Not me.  I frequently succumb to the siren song of complexity, and spend hours deliberating which state-of-the-art technique I'm going to use to solve a problem.  This an ill-advised strategy: you could spend half a lifetime figuring out the best approach to a problem, and never get around to actually solving it.  You can't really know the *best* approach to a problem unless you have already solved it a few times (or talked to someone who has), so you might as well start with something simple -- dare I say, something *random* (hah).  Such was Casey's reasoning when he decided to utilize a relatively simple stochastic methodology to determine the best possible swim route from Woods Hole to Martha's Vineyard.
 
 ## Markov Chain Monte Carlo
 There is power in randomness -- this is the fundamental premise of so-called *Monte Carlo* methods.  How can this be?  Randomness is inherently chaotic, and chaos is bad, right?  Isn't the foremost goal of science and engineering to distill order from chaos?
@@ -108,9 +108,9 @@ Very clever people eventually figured out that this same method could be used to
 $$
 P(x) \propto e^{\beta C(x)},
 $$
-where $\beta$ is a positive parameter controlling the sharpness of the distribution.  If you run the Metropolis–Hastings algorithm with this distribution, the generated "samples" -- which represent sets of parameters, $x$, in this instance -- will preferentially come from low-cost regions of the parameter space, because these samples have a higher probability of being selected.
+where $\beta$ is a positive (*inverse cooling*) parameter controlling the sharpness of the distribution.  If you run the Metropolis–Hastings algorithm with this distribution, the generated "samples" -- which represent sets of parameters, $x$, in this instance -- will preferentially come from low-cost regions of the parameter space, because these samples have a higher probability of being selected.
 
-If none of *that* made sense to you, I am sorry.  Don't give up yet.  I have great news: the Metropolis–Hastings algorithm is shockingly easy to implement, even if you do not fully understand the underlying theory.  This means you (yes *you*!) can optimize all sorts of cool things in your life.
+If none of *that* made sense to you, I am sorry.  But, I have great news: the Metropolis–Hastings algorithm is shockingly easy to implement, even if you do not fully understand the underlying theory.  This means you (yes *you*!) can optimize all sorts of cool things in your life.
 
 These are the key steps:
 
@@ -119,7 +119,7 @@ These are the key steps:
 2. Propose an initial solution, and compute its cost.
 3. Introduce a random perturbation to the previous solution, and compute the new cost.
    - If the perturbation results in a **lower** cost, accept the solution.
-   - If the perturbation results in a **higher** cost, accept the solution with probability $\alpha$, where $\alpha$ is an *acceptance ratio* that depends on the difference between the previous cost and the current cost.  The acceptance ratio can be systematically adjusted over time (this is called *simulated annealing*).
+   - If the perturbation results in a **higher** cost, accept the solution with probability $\alpha$, where $\alpha$ is an *acceptance probability* that depends on the difference between the previous cost and the current cost.  The acceptance probability can be systematically adjusted over time (this is called *simulated annealing*).
    - If the perturbation results in the **lowest** cost thus far, store the solution.
 5. Repeat **Step 3** until a convergence criterion (or iteration limit) is met.
 {{< /callout >}}
@@ -145,7 +145,7 @@ Imagine you are hiking in the mountains on a foggy day, searching for the highes
 
 {{< figure src="hiker.png" id="hiker" caption="Sometimes you have to go lower to get higher [source: DALL-E 16.20.12]." numbered=true >}}
 
-To me, the fact that this algorithm actually works (most of the time) is nothing short of astounding -- it is basically "guess-and-check" on steroids.  And yet, despite its simplicity, this technique has revolutionized the fields of nuclear physics, economics, genetics, and climate science, just to name a few.  It also paved the way for advances in [Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_statistics) and modern machine learning techniques.  The power of this approach cannot be attributed to luck or magic; it is underwritten by *randomness*, and the properties inherent thereto.
+To me, the fact that this algorithm actually works (most of the time) is nothing short of astounding -- it is basically "guess-and-check" on steroids.  And yet, despite its simplicity, this technique has revolutionized the fields of nuclear physics, economics, genetics, and climate science, just to name a few.  It also paved the way for modern machine learning techniques.  The power of this approach cannot be attributed to luck or magic; it is underwritten by *randomness*, and the properties inherent thereto.
 
 ### Python Demo
 Below is a simple, fully-functional 1-D implementation of the Metropolis–Hastings algorithm.  Feel free to [download](https://github.com/blakecole/mv-mcmc/blob/main/src/mcmc_demo_1d.py) it, and modify it as you see fit.  I would encourage you to play around with the initial guess (`initial`) and standard deviation (`proposal_std`) parameters to get a sense of how these influence solution convergence.
@@ -231,11 +231,11 @@ if __name__ == '__main__':
     plt.show()
 ```
 
-If you run the code as is, you should find that the optimizer rapidly finds the smallest value of the cost function $C(x) = (x-2)^2$ at (spoiler alert) $x=2$.  Even for an absurd initial guess like $x_0 = 100$, the Metropolis-Hastings algorithm converges to the true solution in about 250 iterations.
+If you run the code as is, you should find that the optimizer rapidly finds the smallest value of the cost function $C(x) = (x-2)^2$ at...<br> ...drumroll, please...<br> $x=2$.<br>Even for an absurd initial guess like $x_0 = 100$, the Metropolis-Hastings algorithm converges to the true solution in about 250 iterations.
 
-{{< figure src="mcmc_demo_convergence.png" id="hiker" caption="Convergence of the Metropolis-Hastings algorithm for $C(x) = (x-2)^2$, with $x_0 = 100$." numbered=true >}}
+{{< figure src="mcmc_demo_convergence.png" id="convergence" caption="Convergence of the Metropolis-Hastings algorithm for $C(x) = (x-2)^2$, with $x_0 = 100$." numbered=true >}}
 
-This is a fun example, but it doesn't demonstrate the true power of this technique; after all, such a simple problem could have been solved using basic calculus.  What makes the MCMC approach so fascinating is its generality: it can explore parameter spaces of varying dimension, and the cost function need not be differentiable or continuous.  For those interested in diving into the weeds, I would highly recommend checking out my [RJ-MCMC repository on GitHub](https://github.com/blakecole/mv-mcmc).  It has a few really useful functions and clever [flourishes]({{< ref "2-mcmc-mv-swim/#flourishes" >}}) that pertain specifically to swim route optimization.
+This is a fun example, but it really doesn't demonstrate the true power of this technique; after all, this trivial problem can be solved using basic calculus.  What makes the MCMC approach so fascinating is its generality: it can explore parameter spaces of varying dimension, and the cost function need not be differentiable or continuous.
 
 ## Problem Setup
 ### Goal
@@ -371,7 +371,7 @@ Finally, I think a good chunk of the "20-30 minute improvement" Casey referenced
 My approach improves on Casey's in a number of ways:
 - **Reversible Jump MCMC**: Rather than assuming a fixed number of headings, my approach allows the heading vector to shrink and grow as necessary.  You can imagine the tip of the swim trajectory rapidly bouncing around the shoreline, probing different solutions like some sort of disgusting proboscis.
 
-- **Pre-optimization**: Prior to firing up the main optimization engine, I conduct an automated series of *constant-heading* simulations, keeping track of the ones that reach Martha's Vineyard, and pick the fastest one as my first guess.  Surprisingly, this very dumb technique produced solutions that were only a few minutes slower than the final optimized solutions.
+- **Pre-optimization**: Prior to firing up the main optimization engine, I conduct an automated sweep of *constant-heading* simulations, keeping track of the ones that reach Martha's Vineyard, and pick the fastest solution as my first guess.  Surprisingly, this very dumb technique produced solutions that were only a few minutes slower than the final optimized solutions.
 
 - **Enhanced arrival detection**: I use [ray casting](https://en.wikipedia.org/wiki/Point_in_polygon#Ray_casting_algorithm) to determine if swim trajectories terminate inside the digitized boundary of Martha's Vineyard.
 
@@ -393,7 +393,7 @@ Assuming a constant swim pace of $1$:$40/100yd$, and no concerns about getting m
 
 ***On July 30th, 2022, it would have been possible to depart Nobska Beach between 7:30a and 8:00a, and cross Vineyard Sound in 1 hour, 32 minutes***. 
 
-These plots reveal another interesting fact: *constant-heading solutions are actually pretty damn good*.  Most of the time, the optimal trajectory sticks pretty close to at least one *constant-heading* trajectory.  So, unless you're really determined to shave a few minutes off your swim, using a *constant-heading* strategy is totally fine.
+These plots reveal another interesting fact: *constant-heading solutions are actually pretty good*.  Most of the time, the optimal trajectory sticks pretty close to at least one *constant-heading* trajectory.  So, unless you're really determined to shave a few minutes off your swim, using a *constant-heading* strategy is totally fine.
 
 #### Optimal Heading Sequences
 {{< figure src="mv_swim_heading_vs_time.png" id="mv_swim_headings" numbered=true >}}
@@ -412,7 +412,7 @@ I wanted to display a few figures that highlight the robust convergence properti
 
 I ran this optimization shortly after I applied an exponential cooling schedule to the `bump_size` parameter, and was shocked by how well it worked -- the resulting solutions were almost entirely insensitive to initial conditions.  In other words, the optimization procedure was *robust*.  Knowing in advance that the optimal heading vector hovered around $135^{\circ}$ for this start time, I decided to push my luck and use a $180^{\circ}$ *constant-heading* solution as my initial guess.
 
-Uncalled for.  Pathological!
+Uncalled for.  Pathological.
 
 Nevertheless, the optimization routine quickly honed in on the correct solution.  I was so proud that it didn't get mired in the morass of bullshit to which it was intentionally subjected -- I think I understand now [why those guys at Boston Dynamics are so mean to their robots](https://www.youtube.com/watch?v=zkv-_LqTeQA)!
 
@@ -422,7 +422,9 @@ On to the next!
 
 This particular optimization attempt did not yield the best solution -- note that the simulated swim lasted 1.5 minutes longer than the optimal solution for a 6:30a start -- but I liked how it again demonstrated *robustness*, and an ability to escape local minima.  Look at how the solution periodically becomes stuck in local minima, before jumping to better solutions.
 
-Incredible!  We love it.
+Incredible!
+
+We love it.
 
 #### Reflections
 Ultimately, this was a highly academic exercise.  Maybe this sort of thing makes sense if you're a professional athlete or a Navy SEAL with a [head-up display](https://en.wikipedia.org/wiki/Head-up_display) in your goggles, but otherwise you're better off sticking with a *constant-heading* strategy.  During the actual swim, it was challenging enough to follow a single fixed heading with any appreciable degree of confidence -- the notion that a swimmer might be able to make sub-degree alterations to their bearing every eighteen seconds is laughable.

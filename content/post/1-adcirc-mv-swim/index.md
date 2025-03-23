@@ -1,7 +1,7 @@
 ---
 title: "Leveraging the ADCIRC Model to Plan an Open-Water Swim from Woods Hole to Martha's Vineyard"
 subtitle: ""
-summary: "Object makes its way through a vector field."
+summary: "Object makes its way through vector field."
 authors: admin
 tags: []
 categories: []
