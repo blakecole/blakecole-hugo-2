@@ -1,0 +1,36 @@
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Function to initialize Mermaid diagrams with the provided theme
+  function initMermaidDiagrams(theme) {
+    mermaid.initialize({ theme: theme, startOnLoad: false, logLevel: 'fatal' });
+    mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+  }
+
+  // Check for dark mode by detecting a "dark" class on the document element.
+  // Adjust this if your site uses a different element or class name.
+  let currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+  initMermaidDiagrams(currentTheme);
+
+  // Observe the documentElement for changes to the class attribute.
+  const observer = new MutationObserver(function(mutationsList) {
+    for (let mutation of mutationsList) {
+      if (mutation.attributeName === 'class') {
+        let newTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+        // Only reinitialize if the theme has changed
+        if (newTheme !== currentTheme) {
+          currentTheme = newTheme;
+          initMermaidDiagrams(newTheme);
+        }
+      }
+    }
+  });
+
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+});
+</script>
+
+<div class="mermaid">
+  {{ .Inner | safeHTML }}
+</div>
+
