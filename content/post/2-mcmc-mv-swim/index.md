@@ -516,7 +516,7 @@ $$
 \alpha_k = \exp{\left( \frac{\Delta_k}{T_k} \right)}
 $$
 
-where $T_k$ is the temperature parameter, and $\Delta_k = C_k - C_{k-1}$ is the difference between the new and old solution costs. For simple problems (as in the [Python Demo]({{< ref "2-mcmc-mv-swim/#python-demo" >}}) provided above), it is often sufficient to simply set $T=1$; however, by allowing the temperature parameter to gradually decrease over time, we can achieve both broad *exploration* early in the optimization process, and focused *exploitation* and refinement as convergence progresses.
+where $T_k$ is the temperature parameter, and $\Delta_k = C(x_k) - C(x_{k-1})$ is the difference between the new and old solution costs. For simple problems (as in the [Python Demo]({{< ref "2-mcmc-mv-swim/#python-demo" >}}) provided above), it is often sufficient to simply set $T=1$; however, by allowing the temperature parameter to gradually decrease over time, we can achieve both broad *exploration* early in the optimization process, and focused *exploitation* and refinement as convergence progresses.
 
 The temperature parameter is often reduced according to a predefined *cooling schedule*, a few of which will be outlined here:
 
